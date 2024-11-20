@@ -1,5 +1,7 @@
-import os, yaml, time
+import os, yaml, time, datetime
 from steam_web_api import Steam
+
+ncache = {} #Define cache as a global variable
 
 def wsafetext(text: str) -> str:
     """
@@ -18,17 +20,12 @@ def get_name(gameid: int) -> str:
 
     input: gameid, output: game title
     """
-    global ncache #Define cache as a global variable
-    ncache = {}
-
     if ncache.get(gameid) != None:
         game_name = ncache.get(gameid)
     else:
         appdata = steam.apps.get_app_details(gameid)
-        game_name = appdata.get(gameid).get("data").get("name")
+        game_name = wsafetext(appdata.get(gameid).get("data").get("name"))
         ncache.update({gameid: game_name})
-
-    game_name = wsafetext(game_name)
 
     return game_name
 
@@ -68,7 +65,8 @@ def rename_files(path: str) -> None:
         return
 
     time_spent = int(time.time()) - start_time
-    print(f"{count} file names changed! Time Spent: {time_spent}s")
+    formated_time = str(datetime.timedelta(seconds = time_spent))
+    print(f"{count} file names changed! Time Spent: {formated_time}")
 
 # Main
 if __name__ == "__main__":
