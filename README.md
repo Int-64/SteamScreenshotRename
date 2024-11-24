@@ -5,4 +5,4 @@ Dependencies: [Python Steam API](https://pypi.org/project/python-steam-api/), [P
 
 [Get your Steam API Key](https://steamcommunity.com/dev/apikey)
 
-testdummy.zip contains 256 empty "screenshot" files being consisted of 4 game ids
+testdummy.zip contains 256 empty "screenshot" files being consisted of 4 game ids.
