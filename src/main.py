@@ -52,8 +52,8 @@ def rename_files(path: str) -> None:
 
     for filename in os.listdir(path):
         filepath = os.path.join(path, filename)
-
-        if filename[0].isdigit():
+        
+        if filename.split("_")[0].isdigit():
             newname = id2code(filename)
             os.rename(filepath, os.path.join(path, id2code(filename)))
 
